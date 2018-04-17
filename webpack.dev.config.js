@@ -10,6 +10,7 @@ module.exports = {
         path: path.join(__dirname, './dist'),
         filename: 'bundle.js'
     },
+    /**加载的模块 */
     module: {
         rules: [{
             test: /\.js$/,
@@ -20,5 +21,9 @@ module.exports = {
             test: /\.jsx?$/,
             use:['babel-loader?presets[]=es2015&presets[]=react']
             }] 
+    },
+    /**webpack-dev-server配置 */
+    devServer:{
+        contentBase:path.join(__dirname,'./dist'),//设置url的根目录，如果不设置，则默认是指向项目根目录
     }
 };
