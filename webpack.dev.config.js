@@ -25,5 +25,6 @@ module.exports = {
     /**webpack-dev-server配置 */
     devServer:{
         contentBase:path.join(__dirname,'./dist'),//设置url的根目录，如果不设置，则默认是指向项目根目录
+        historyApiFallback : true,//让所有404的页面定位到index.html
     }
 };
