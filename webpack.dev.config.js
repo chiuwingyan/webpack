@@ -29,5 +29,12 @@ module.exports = {
     devServer:{
         contentBase:path.join(__dirname,'./dist'),//设置url的根目录，如果不设置，则默认是指向项目根目录
         historyApiFallback : true,//让所有404的页面定位到index.html
+    },
+    resolve:{
+        alias: {                 //文件路径优化
+            pages:path.join(__dirname,'src/pages'),
+            component:path.join(__dirname,'src/component'),
+            router:path.join(__dirname,'router')
+        }
     }
 };
