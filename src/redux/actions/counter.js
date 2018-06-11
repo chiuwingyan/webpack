@@ -1,6 +1,6 @@
 // action
 
-export const INCREMENT ="counter/INCREMENT"
+export const INCREMENT = "counter/INCREMENT"
 export const DECREMENT ="counter/DECREMENT"
 export const RESET ="counter/RESET"
 export function increment(){

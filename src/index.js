@@ -3,6 +3,7 @@ import ReactDom from 'react-dom';
 import Hello from './component/Hello/hello.jsx';
 import getRouter from './router/router'
 import { AppContainer } from 'react-hot-loader';
+
 //初始化
 renderWithHotReload(getRouter());
 //react-hot-loader热更新
