@@ -13,6 +13,7 @@ const iniState={
 export default function reducer(state=iniState,action) {
     switch (action.type) {
         case INCREMENT:
+        console.log('count',state.count)
             return {
                 count:state.count+1
             };

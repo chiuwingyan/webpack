@@ -1,24 +1,33 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import {increment} from '../../redux/actions/counter'
 
-export default class Home extends Component {
+const mapStateToProps=(state)=>{
+    return {
+        counter:state.counter.count
+    }
+}
+const mapDispatchToProps=(dispatch,ownProps) =>{
+    return {
+        increment:()=>dispatch(increment())
+    }
+}
+class Home extends Component {
     constructor(props){
         super(props);
         this.state={
             count:0
         }
         }
-        _handleClick(){
-            this.setState({
-                count:++this.state.count
-            })
-        }
         render() {
             return (
                 <div>
                     this is home.<br/>
-                    当前计数：{this.state.count}<br/>
-                    <button onClick={()=>this._handleClick()}>自增</button>
+                    当前计数：{this.props.counter}<br/>
+                    <button onClick={()=>this.props.increment()}>自增</button>
                 </div>
             )
         }
 }
+
+export default connect(mapStateToProps,mapDispatchToProps)(Home)
