@@ -14,6 +14,11 @@ const loggerMiddleware = createLogger()
 
  let store = createStore(
      combineReducers,
+     {
+         counter:{             //createStore的第二个参数为初始化state，这里的初始化state的优先级会比reducer里面高
+             count:42 
+         }
+     },
      applyMiddleware(
          thunkMiddleware, // 允许我们 dispatch() 函数
          loggerMiddleware // 一个很便捷的 middleware，用来打印 action 日志
