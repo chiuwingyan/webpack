@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import {fetchPosts} from '../../redux/actions/asyn';
-
+import './Page1.scss'
+import image from './images/title.png'
 const mapStateToProps=(state)=>{
     return {
         status:state.asyn.beforeSend.status,
@@ -23,10 +24,12 @@ class Page1 extends Component {
   
     render() {
         return (
+
             <div>
-               <div onClick={()=>this.props.fetch()}>点击</div>
+               <div onClick={()=>this.props.fetch()} className="button">点击</div>
                状态：<span>{this.props.status}</span><br/>
-               结果：<span>{this.props.result}</span>
+               结果：<span>{this.props.result}</span> <br />
+               <img src={image}/>
             </div>
         )
     }
