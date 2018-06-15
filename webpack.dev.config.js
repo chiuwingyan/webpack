@@ -1,5 +1,5 @@
 const path = require('path');
-
+const HtmlWebpackPlugin=require('html-webpack-plugin')
 module.exports = {
  
     /*入口*/
@@ -11,8 +11,8 @@ module.exports = {
     /*输出到dist文件夹，输出文件名字为bundle.js*/
     output: {
         path: path.join(__dirname, './dist'),
-        filename: 'bundle.js',
-        chunkFilename:'[name].js'  //打包后的名字为当前组件的名字，详见router.js里面引入组件的方法
+        filename: '[name].[hash].js',          //对entry文件的打包。生成的hash用于缓存，不需要每次都下载文件
+        chunkFilename:'[name].[chunkhash].js'  //打包后的名字为当前组件的名字，详见router.js里面引入组件的方法,这里定制的是非entry入口文件的命名规则，如按需加载的文件
     },
     /**加载的模块 */
     module: {
@@ -43,8 +43,7 @@ module.exports = {
     devServer:{
         port:8080,
         contentBase:path.join(__dirname,'./dist'),//设置url的根目录，如果不设置，则默认是指向项目根目录
-        historyApiFallback : true,//让所有404的页面定位到index.html
-        host:'0.0.0.0'
+        historyApiFallback : true//让所有404的页面定位到index.html
     },
     resolve:{
         alias: {                 //文件路径优化
@@ -53,5 +52,10 @@ module.exports = {
             router:path.join(__dirname,'router')
         }
     },
-    devtool:'inline-source-map'
+    devtool:'inline-source-map',
+
+    plugins:[new HtmlWebpackPlugin({            //此插件帮助我们每次自动把js插入到index.html模板当中
+        filename:'index.html',
+        template:path.join(__dirname,'dist/index.html')
+    })]
 };

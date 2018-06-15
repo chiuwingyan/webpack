@@ -15,7 +15,7 @@ const loggerMiddleware = createLogger()
  let store = createStore(
      combineReducers,
      {
-         counter:{             //createStore的第二个参数为初始化state，这里的初始化state的优先级会比reducer里面高,这里集成了不同的reducere，初始化不同的reducer时，key就是你要初始化的reducer
+         counter:{ //createStore的第二个参数为初始化state，这里的初始化state的优先级会比reducer里面高,这里集成了不同的reducere，初始化不同的reducer时，key就是你要初始化的reducer
              count:42 
          }
      },
