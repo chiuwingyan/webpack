@@ -24,7 +24,7 @@ class Home extends Component {
                 <div>
                     this is home.<br/>
                     当前计数：{this.props.counter}<br/>
-                    <button onClick={()=>this.props.increment()}>自增</button>
+                    <button onClick={()=>this.props.increment()}>自增1</button>
                 </div>
             )
         }

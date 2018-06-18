@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev-build": "webpack --config webpack.dev.config.js",
-    "start": "webpack-dev-server --config webpack.dev.config.js --color --progress"
+    "start": "webpack-dev-server --config webpack.dev.config.js --color --progress",
+    "build": "webpack --config webpack.config.js"
   },
   "author": "chiuwingyan",
   "license": "ISC",
@@ -28,6 +29,7 @@
     "redux-thunk": "^2.3.0",
     "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",
+    "uglifyjs-webpack-plugin": "^1.2.5",
     "url-loader": "^1.0.1",
     "webpack": "^3.11.0",
     "webpack-dev-server": "^2.11.2"
