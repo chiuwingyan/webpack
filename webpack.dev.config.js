@@ -63,7 +63,7 @@ module.exports = {
     plugins:[
         new HtmlWebpackPlugin({            //此插件帮助我们每次自动把js插入到index.html模板当中，entry里面的key有多少个，对应就会生成多少个
         filename:'index.html',
-        template:path.join(__dirname,'dist/index.html')
+        template:path.join(__dirname,'src/index.dev.html')
     }),
         new webpack.optimize.CommonsChunkPlugin({ //对应entry里面的vendor
             name: 'vendor'
