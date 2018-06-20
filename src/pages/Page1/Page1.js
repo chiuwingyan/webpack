@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import {fetchPosts} from '../../redux/actions/asyn';
-import './Page1.scss'
+import style from './Page1.scss'
 import image from './images/title.png'
 const mapStateToProps=(state)=>{
     return {
@@ -26,7 +26,7 @@ class Page1 extends Component {
         return (
 
             <div>
-               <div onClick={()=>this.props.fetch()} className="button">点击</div>
+               <div onClick={()=>this.props.fetch()} className={style.button}>点击</div>
                状态：<span>{this.props.status}</span><br/>
                结果：<span>{this.props.result}</span> <br />
                <img src={image}/>

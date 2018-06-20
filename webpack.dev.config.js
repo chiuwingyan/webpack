@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin=require('html-webpack-plugin');
 const webpack=require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 /**
  * 开发环境配置
  */
@@ -33,7 +34,10 @@ module.exports = {
             },
             {
                 test: /\.scss$/,    //并且想要把css文件作为<style>的内容插入到模版文件中，需要css-loader和style-loader,前者是让js可以加载css，后者把加载的css作为style标签内容插入到html当中
-                use: ['style-loader', 'css-loader','sass-loader','postcss-loader']
+                use : ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: ['css-loader?modules&localIdentName=[local]-[hash:base64:5]', 'sass-loader', 'postcss-loader']
+                })
             },
             {
                 test:/\.(png|jpg|gif)$/,      //编译图片，图片可以通过import到js里面使用
@@ -67,6 +71,10 @@ module.exports = {
     }),
         new webpack.optimize.CommonsChunkPlugin({ //对应entry里面的vendor
             name: 'vendor'
+        }),
+        new ExtractTextPlugin({ //单独生成css文件
+            filename: '[name].[contenthash:5].css',
+            allChunks: true
         })
 ] 
 };

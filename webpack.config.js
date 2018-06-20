@@ -37,7 +37,7 @@ module.exports = {
                 test: /\.scss$/, //并且想要把css文件作为<style>的内容插入到模版文件中，需要css-loader和style-loader,前者是让js可以加载css，后者把加载的css作为style标签内容插入到html当中
                 use: ExtractTextPlugin.extract({
                     fallback:'style-loader',
-                    use:['sass-loader','css-loader','postcss-loader']
+                    use : ['css-loader?modules&localIdentName=[local]-[hash:base64:5]', 'sass-loader', 'postcss-loader'] //modules打开css-modules功能，使得组件可以局部使用css，可以把类名编译成hash字符串.localIdentName为编译后类名格式
                 })
             }, {
                 test: /\.(png|jpg|gif)$/, //编译图片，图片可以通过import到js里面使用
@@ -78,7 +78,7 @@ module.exports = {
         }),
         new webpack.HashedModuleIdsPlugin(),      //该插件会根据模块的相对路径生成一个四位数的hash作为模块id, 建议用于生产环境。
         new CleanWebpackPlugin(['dist']),        //打包前自动清除dist文件
-        new ExtractTextPlugin({
+        new ExtractTextPlugin({                     //单独生成css文件
             filename:'[name].[contenthash:5].css',
             allChunks:true
         })
