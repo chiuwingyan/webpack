@@ -10,7 +10,7 @@ const iniState={
 /*
 *reducer
 */
-export default function reducer(state=iniState,action) {
+export default function reducer(state,action) {
     switch (action.type) {
         case INCREMENT:
         console.log('count',state.count)
