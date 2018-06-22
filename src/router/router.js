@@ -5,7 +5,7 @@ import Home from 'bundle-loader?lazy&name=home!pages/Home/Home';
 import Page1 from 'bundle-loader?lazy&name=page1!pages/Page1/Page1';
 import NotFound from 'bundle-loader?lazy&name=page1!pages/NotFound/NotFound'
 import store from '../redux/store';
-import Loading from 'components/Loading/Loading'
+import Loading from './../component/Loading/Loading.jsx'
 const createComponent=(component)=>(props)=>(
     <Bundle load={component}>
         {

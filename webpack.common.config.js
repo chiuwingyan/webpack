@@ -10,7 +10,7 @@ commonConfig={
     /*入口*/
     entry: {
         app:[          
-            'react-hot-loader/patch', 
+            "babel-polyfill",       //babel只能转换新的js句法，例如let这些，但是不会转换新的api，例如Iterator、Generator、Set、Maps等，因此要加入babel-polyfill用于支持。
             path.join(__dirname, 'src/index.js')
         ],
         vendor: ['react', 'react-router-dom', 'redux', 'react-dom', 'react-redux'] //第三方库，一般不会改变，定义在vendor中分离出来。
@@ -20,7 +20,7 @@ commonConfig={
         path: path.join(__dirname, './dist'),
         filename: '[name].[chunkhash].js',    //对entry文件的打包,[name]是占位符，对于entry里面的每个key,使得打包生产的文件唯一。生成的hash用于缓存，不需要每次都下载文件,
         chunkFilename:'[name].[chunkhash].js',  //打包后的名字为当前组件的名字，详见router.js里面引入组件的方法,这里定制的是非entry入口文件的命名规则，如按需加载的文件
-        publicPath: "/"
+   
     },
      /**加载的模块 */
     module: {
@@ -28,9 +28,11 @@ commonConfig={
             {
                 test: /\.js$/,
                 use: ['babel-loader?cacheDirectory=true'],
+                exclude:/(node_modules|bower_components)/,      //babel编译去除node_mocules
                 include: path.join(__dirname, 'src')
             }, {
                 test: /\.jsx?$/,
+                exclude:/(node_modules|bower_components)/,
                 use: ['babel-loader?presets[]=es2015&presets[]=react']
             }, {
                 test: /\.scss$/, //并且想要把css文件作为<style>的内容插入到模版文件中，需要css-loader和style-loader,前者是让js可以加载css，后者把加载的css作为style标签内容插入到html当中

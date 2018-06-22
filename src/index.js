@@ -5,7 +5,8 @@ import getRouter from './router/router';
 import {Provider} from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
 import store from './redux/store'
-import App from 'component/App/App'
+import App from './component/App/App.jsx';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 //初始化
 renderWithHotReload(App);
 //react-hot-loader热更新
@@ -18,13 +19,13 @@ module.hot.accept('component/App/App', () => {
 
 function renderWithHotReload(RootElement) {
     ReactDom.render(
-        <AppContainer>
+<AppContainer>
 <Provider store = {store} > 
     <Router>
-            {RootElement}
+            <RootElement/>
     </Router>
 </Provider>
-        </AppContainer>,
+</AppContainer>,
         document.getElementById('app')
     )
 }
