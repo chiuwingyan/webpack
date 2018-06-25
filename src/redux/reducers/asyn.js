@@ -11,7 +11,7 @@ function beforeSend(state=initState,action){
         case BEFORESEND:
         console.log('请求发起');
             return Object.assign({},state,{
-                status:'状态-请求发起前'
+                status:'状态-请求发起zhi前'
             })
             break;
     

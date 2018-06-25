@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import Nav from 'component/Nav/Nav.jsx';
-import getRouter from 'router/router';
+import getRouter from '../../router/router';
 import {BrowserRouter as Router} from 'react-router-dom';
 export default class App extends Component {
      constructor(props){
@@ -11,7 +11,7 @@ export default class App extends Component {
         return (
             <div>
             <Nav />
-            {getRouter()}
+          {getRouter()}
             </div>
         )
     }
