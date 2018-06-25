@@ -12,11 +12,12 @@ export default class Nav extends Component {
             <div>
             <ul>
                 <li>
-                    <Link to="/">首页</Link>
+                    <Link to="/">首页1</Link>
                 </li>
                 <li>
                     <Link to="/page1">Page1</Link>
                 </li>
+<Hello />
             </ul>
             </div>
         )

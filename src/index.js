@@ -9,12 +9,13 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 //初始化
 renderWithHotReload(App);
 //react-hot-loader热更新
-if (module.hot) {
-module.hot.accept('component/App/App', () => {
-    const NextApp = require('component/App/App').default;
-    renderWithHotReload(NextApp);
-    });
-}
+// if (module.hot) {
+// module.hot.accept('component/App/App', () => {
+//     alert('work')
+//     const NextApp = require('component/App/App').default;
+//     renderWithHotReload(App);
+//     });
+// }
 
 function renderWithHotReload(RootElement) {
     ReactDom.render(

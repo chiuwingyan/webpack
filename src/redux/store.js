@@ -25,11 +25,12 @@ const loggerMiddleware = createLogger()
      )
     );
 
-    if(module.hot){
-        module.hot.accept("./reducers.js",()=>{
-            const nextCombineReducers = require("./reducers.js").default;
+if (module.hot) {
+    module.hot.accept("./reducers", () => {
+            const nextCombineReducers = require("./reducers").default;
             store.replaceReducer(nextCombineReducers);
-        })
-    }
+        });
+}
+
 
  export default store;

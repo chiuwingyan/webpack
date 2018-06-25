@@ -26,14 +26,10 @@ commonConfig={
     module: {
         rules: [
             {
-                test: /\.js$/,
-                use: ['babel-loader?cacheDirectory=true'],
+                test: /\.(js|jsx)$/,
+                use: 'babel-loader?cacheDirectory=true&presets[]=es2015&presets[]=react',
                 exclude:/(node_modules|bower_components)/,      //babel编译去除node_mocules
-                include: path.join(__dirname, 'src')
-            }, {
-                test: /\.jsx?$/,
-                exclude:/(node_modules|bower_components)/,
-                use: ['babel-loader?presets[]=es2015&presets[]=react']
+                include: path.join(__dirname, 'src'),
             }, {
                 test: /\.scss$/, //并且想要把css文件作为<style>的内容插入到模版文件中，需要css-loader和style-loader,前者是让js可以加载css，后者把加载的css作为style标签内容插入到html当中
                 use: ExtractTextPlugin.extract({
