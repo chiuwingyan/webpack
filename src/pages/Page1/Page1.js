@@ -27,7 +27,7 @@ class Page1 extends Component {
         return (
 
             <div>
-               <div onClick={()=>this.props.fetch()} className={style.button}>点击1</div>
+               <div onClick={()=>this.props.fetch()} className={style.button}>点击</div>
                状态：<span>{this.props.status}</span><br/>
                结果：<span>{this.props.result}</span> <br />
                <img src={image}/>

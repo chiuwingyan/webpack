@@ -26,7 +26,7 @@ const loggerMiddleware = createLogger()
     );
 
 if (module.hot) {
-    module.hot.accept("./reducers", () => {
+    module.hot.accept('./reducers', () => {
             const nextCombineReducers = require("./reducers").default;
             store.replaceReducer(nextCombineReducers);
         });

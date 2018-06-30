@@ -6,16 +6,21 @@ import { AppContainer } from 'react-hot-loader';
 import store from './redux/store'
 import App from 'component/App/App';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import '../mock/mock';
 //初始化
 renderWithHotReload(App);
 //react-hot-loader热更新
-// if (module.hot) {
-// module.hot.accept('component/App/App', () => {
-//     alert('work')
-//     const NextApp = require('component/App/App').default;
-//     renderWithHotReload(App);
-//     });
-// }
+if (module.hot) {
+module.hot.accept(() => {
+   // alert('work')
+    const NextApp = require('component/App/App').default;
+    renderWithHotReload(App);
+    });
+}
+
+if(MOCK){
+    require('mock/mock')
+}
 
 function renderWithHotReload(RootElement) {
     ReactDom.render(

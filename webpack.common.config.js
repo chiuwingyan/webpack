@@ -32,7 +32,7 @@ commonConfig={
                 include: path.join(__dirname, 'src'),
             }, {
                 test: /\.scss$/, //并且想要把css文件作为<style>的内容插入到模版文件中，需要css-loader和style-loader,前者是让js可以加载css，后者把加载的css作为style标签内容插入到html当中
-                use: ExtractTextPlugin.extract({
+                use: ExtractTextPlugin.extract({                ////单独生成css文件
                     fallback:'style-loader',
                     use : ['css-loader?modules&localIdentName=[local]-[hash:base64:5]', 'sass-loader', 'postcss-loader'] //modules打开css-modules功能，使得组件可以局部使用css，可以把类名编译成hash字符串.localIdentName为编译后类名格式
                 })
@@ -68,7 +68,8 @@ commonConfig={
             component: path.join(__dirname, 'src/component'),
             router: path.join(__dirname, 'src/router'),
             actions: path.join(__dirname, 'src/redux/actions'),
-            reducers: path.join(__dirname, 'src/redux/reducers')
+            reducers: path.join(__dirname, 'src/redux/reducers'),
+            mock: path.join(__dirname,'mock')
         },
         extensions: [".jsx",".js"], 
     }

@@ -17,7 +17,8 @@ const devConfig = {
     },    
     /*输出到dist文件夹，输出文件名字为bundle.js*/
     output: {
-        filename: '[name].[hash].js'   //这里在生产环境是chunkhash，但是chunkhash和react-hot-loader不兼容，开发环境只能妥协
+        filename: '[name].[hash].js',   //这里在生产环境是chunkhash，但是chunkhash和react-hot-loader不兼容，开发环境只能妥协
+       // publicPath: '/'
     },
 
     /**webpack-dev-server配置 */
@@ -25,12 +26,15 @@ const devConfig = {
         port:8080,
         contentBase:path.join(__dirname,'./dist'),//设置url的根目录，如果不设置，则默认是指向项目根目录
         historyApiFallback : true,//让所有404的页面定位到index.html
-        //hotOnly:true
+        hotOnly:true
     },
 
     plugins: [
-        // new webpack.NamedModulesPlugin(), //用于启动HMR时可以显示模块的相对路径
-        // new webpack.HotModuleReplacementPlugin(),   //hot module replacement 启动模块热替换的插件
+        new webpack.NamedModulesPlugin(), //用于启动HMR时可以显示模块的相对路径
+        new webpack.HotModuleReplacementPlugin(),   //hot module replacement 启动模块热替换的插件
+        new webpack.DefinePlugin({          //创建一个在编译时可以配置的全局常量
+            MOCK:true           //开发环境下才开启
+        })
     ]
 };
 /**与公用配置合并 */

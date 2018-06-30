@@ -3,7 +3,7 @@ import Nav from 'component/Nav/Nav.jsx';
 import getRouter from '../../router/router';
 import {BrowserRouter as Router} from 'react-router-dom';
 import {hot} from 'react-hot-loader'
-class App extends Component {
+export default class App extends Component {
      constructor(props){
         super(props);
         
@@ -18,4 +18,3 @@ class App extends Component {
     }
 }
 
-export default hot(module)(App)
