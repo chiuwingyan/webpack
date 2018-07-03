@@ -26,15 +26,18 @@ const devConfig = {
         port:8080,
         contentBase:path.join(__dirname,'./dist'),//设置url的根目录，如果不设置，则默认是指向项目根目录
         historyApiFallback : true,//让所有404的页面定位到index.html
-        hotOnly:true
+        hotOnly:true,
+        proxy: {
+            "/api/*":"http://localhost:8090/$1"
+        }
     },
 
     plugins: [
         new webpack.NamedModulesPlugin(), //用于启动HMR时可以显示模块的相对路径
         new webpack.HotModuleReplacementPlugin(),   //hot module replacement 启动模块热替换的插件
-        new webpack.DefinePlugin({          //创建一个在编译时可以配置的全局常量
-            MOCK:true           //开发环境下才开启
-        })
+        // new webpack.DefinePlugin({          //创建一个在编译时可以配置的全局常量
+        //     MOCK:true           //开发环境下才开启
+        // })
     ]
 };
 /**与公用配置合并 */

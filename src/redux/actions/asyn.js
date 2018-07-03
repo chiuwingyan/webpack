@@ -1,4 +1,6 @@
 
+import axios from 'axios';
+
 export const BEFORESEND='asyn/beforeSend';
 export const SUCCESS = 'asyn/success';
 export const FAIL = 'asyn/fail';
@@ -37,20 +39,29 @@ export function fetchPosts() {
         /**
          * 这里使用Promise+settimeout模拟网络请求
          */
-        new Promise((resolve,reject)=>{
-            setTimeout(() => {
-                reject('结果-异步请求失败')
-                resolve('结果-异步请求成功');
-            }, 300);
-        }).then((data)=>{
-            /**
-             * 使用请求结果来更新应用对应的state，
-             * 可以使用多个dispatch
-             */
-            dispatch(success(data));
+    //     new Promise((resolve,reject)=>{
+    //         setTimeout(() => {
+    //             reject('结果-异步请求失败')
+    //             resolve('结果-异步请求成功');
+    //         }, 300);
+    //     }).then((data)=>{
+    //         /**
+    //          * 使用请求结果来更新应用对应的state，
+    //          * 可以使用多个dispatch
+    //          */
+    //         dispatch(success(data));
 
-        }).catch((data)=>{
-            dispatch(fail(data));
-        })
-    }
+    //     }).catch((data)=>{
+    //         dispatch(fail(data));
+    //     })
+    
+
+    axios.get('/api/user')
+    .then((data) => {
+        dispatch(success(data));
+    })
+    .catch((error)=>{
+        dispatch(fail(error));
+    })
+}
 }
