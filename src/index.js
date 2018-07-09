@@ -18,9 +18,9 @@ module.hot.accept(() => {
     });
 }
 
-if(MOCK){
-    require('mock/mock')
-}
+// if(MOCK){
+//     require('mock/mock')
+// }
 
 function renderWithHotReload(RootElement) {
     ReactDom.render(

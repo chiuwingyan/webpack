@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import {increment} from '../../redux/actions/counter'
-
+import { fetchPosts } from '../../redux/actions/asyn';
 const mapStateToProps=(state)=>{
     return {
-        counter:state.counter.count
+        counter:state.counter.count,
+        name: state.asyn.fetchResult.result
     }
 }
 const mapDispatchToProps=(dispatch,ownProps) =>{
@@ -18,6 +19,9 @@ class Home extends Component {
         this.state={
             count:0
         }
+        }
+        componentDidMount(){
+
         }
         render() {
             return (

@@ -28,7 +28,7 @@ const devConfig = {
         historyApiFallback : true,//让所有404的页面定位到index.html
         hotOnly:true,
         proxy: {
-            "/api/*":"http://localhost:8090/$1"
+            "/api/*":"http://localhost:8090/$1"             //设置代理本地帮助我们把请求重定向到实际请求的服务器上，可用于解决跨域
         }
     },
 
