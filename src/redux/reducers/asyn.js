@@ -34,7 +34,7 @@ function fetchResult(state=initState,action){
         console.log('请求失败');
             return Object.assign({},state,{
                 status:'状态-请求失败',
-                result:action.result
+                result:action.data
             })
             break
         default:

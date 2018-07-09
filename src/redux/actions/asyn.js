@@ -58,6 +58,7 @@ export function fetchPosts() {
 
     axios.get('/api/user')
     .then((data) => {
+        console.log(data)
         dispatch(success(data));
     })
     .catch((error)=>{
