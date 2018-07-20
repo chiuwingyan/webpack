@@ -54,13 +54,16 @@ commonConfig={
             filename:'index.html',
             template:path.join(__dirname,'src/index.dev.html')
             }),
-            new webpack.optimize.CommonsChunkPlugin({ //对应entry里面的vendor
-                name: ['vendor','runtime']
+            new webpack.optimize.CommonsChunkPlugin({ //对应entry里面的vendor,公共代码提取
+                name: ['vendor','runtime']      //公共使用的chunk名称，一个entry入口对应一个chunk。原来vendor是包含runtime，这样子会把runtime从vendor中再提取出来
             }),
             new ExtractTextPlugin({ //单独生成css文件
                 filename: '[name].[contenthash:5].css',
                 allChunks: true
-            })
+            }),
+            // new webpack.DllReferencePlugin({
+            //     manifest: require('./dist/vendor-manifest.json')
+            // })
     ],
         resolve: {
         alias: {
