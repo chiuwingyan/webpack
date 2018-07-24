@@ -5,7 +5,7 @@ module.exports = {
         vendor: ['react', 'react-router-dom', 'redux', 'react-dom', 'react-redux']         //将用到的第三方插件添加到vendor中
     },
     output: {
-        path:path.resolve(base.path),
+        path: path.resolve('./dist'),
         filename: '[name].dll.js',
         library: '[name]_library'
     },
