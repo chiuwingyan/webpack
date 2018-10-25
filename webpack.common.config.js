@@ -3,9 +3,12 @@
  */
 
 const path = require('path');
+const os = require('os');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HappyPack = require('happypack');
+const happyThreadPool = HappyPack.ThreadPool({size:os.cpus().length})
 commonConfig={
     /*入口*/
     entry: {
@@ -27,14 +30,14 @@ commonConfig={
         rules: [
             {
                 test: /\.(js|jsx)$/,
-                use: 'babel-loader?cacheDirectory=true&presets[]=es2015&presets[]=react',
+                use: 'happypack/loader?id=js',
                 exclude:/(node_modules|bower_components)/,      //babel编译去除node_mocules
                 include: path.join(__dirname, 'src'),
             }, {
                 test: /\.scss$/, //并且想要把css文件作为<style>的内容插入到模版文件中，需要css-loader和style-loader,前者是让js可以加载css，后者把加载的css作为style标签内容插入到html当中
                 use: ExtractTextPlugin.extract({                ////单独生成css文件
                     fallback:'style-loader',
-                    use : ['css-loader?modules&localIdentName=[local]-[hash:base64:5]', 'sass-loader', 'postcss-loader'] //modules打开css-modules功能，使得组件可以局部使用css，可以把类名编译成hash字符串.localIdentName为编译后类名格式
+                    use: 'happypack/loader?id=css',//modules打开css-modules功能，使得组件可以局部使用css，可以把类名编译成hash字符串.localIdentName为编译后类名格式
                 })
             }, {
                 test: /\.(png|jpg|gif)$/, //编译图片，图片可以通过import到js里面使用
@@ -63,6 +66,35 @@ commonConfig={
             }),
             new webpack.DllReferencePlugin({
                 manifest: require('./dist/vendor-manifest.json')
+            }),
+            new HappyPack({
+                id:'js',
+                cache: false,
+                loaders:[{
+                    loader:'babel-loader?presets[]=es2015&presets[]=react'
+                }],
+                //共享进程池
+                threadPool: happyThreadPool,
+                //允许 HappyPack 输出日志
+                verbose: true,
+            }),
+            new HappyPack({
+                id: 'css',
+                cache: false,
+                loaders: [{
+                    loader: 'css-loader?modules&localIdentName=[local]-[hash:base64:5]'
+                },
+                {
+                    loader:'sass-loader',
+                },
+                {
+                    loader:'postcss-loader'
+                }
+            ],
+                //共享进程池
+                threadPool: happyThreadPool,
+                //允许 HappyPack 输出日志
+                verbose: true,
             })
     ],
         resolve: {
